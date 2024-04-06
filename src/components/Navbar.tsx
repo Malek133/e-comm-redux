@@ -1,8 +1,13 @@
 
 
+
+import { useSelector } from "react-redux"
 import {  NavLink } from "react-router-dom"
+import { cartSelector } from "../Redux/features/Carte/CarteSlice"
 
 const Navbar = () => {
+
+ const {carteItems} = useSelector(cartSelector)
      
 //     const {pathname} = useLocation();
 //     const storageKey = 'addPLoged';
@@ -43,7 +48,7 @@ const Navbar = () => {
           <ul className="flex items-center space-x-7 text-white">
              <li> <NavLink to="/AddCart">
             <p className=" text-lg font-medium hover:text-[#d2d9e9] ">
-            Add to Cart (0)</p>
+            Add to Cart ({carteItems.length})</p>
             </NavLink> </li>
           <li className=" duration-200 font-semibold text-lg">
             <NavLink to="/register">Register</NavLink>
