@@ -6,6 +6,7 @@ export interface IProduct {
       des:string,
       imageUrl:string ,
       price:string 
+      quantity:number
 }
 
 export interface IFormInput {

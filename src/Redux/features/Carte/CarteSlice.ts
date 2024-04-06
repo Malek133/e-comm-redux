@@ -1,13 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 // import type { PayloadAction } from '@reduxjs/toolkit'
 import { IProduct } from '../../../components/interface'
+import { cartItemShop } from '../../../utils/functions'
 
  interface CartState {
- carteItem:IProduct[]
+ carteItems:IProduct[]
 }
 
 const initialState: CartState = {
-   carteItem:[],
+   carteItems:[],
   
 }
 
@@ -15,19 +16,14 @@ const initialState: CartState = {
   name: 'cart',
   initialState,
   reducers: {
-    // increment: (state) => {
-    //   state.value += 1
-    // },
-    // decrement: (state) => {
-    //   state.value -= 1
-    // },
-    // incrementByAmount: (state, action: PayloadAction<number>) => {
-    //   state.value += action.payload
-    // },
+    
+    AddToCart: (state, action: PayloadAction<IProduct>) => {
+       state.carteItems = cartItemShop( state.carteItems,action.payload)
+     },
   },
 })
 
 
-// export const { increment, decrement, incrementByAmount } = counterSlice.actions
+ export const { AddToCart } = cartSlice.actions
 
 export default cartSlice.reducer

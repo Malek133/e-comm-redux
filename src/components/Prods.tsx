@@ -6,6 +6,8 @@ import Btn from './ui/Btn';
 // import { FilePenLine } from 'lucide-react';
 // import { Trash2 } from 'lucide-react';
 import { ShoppingCart } from 'lucide-react';
+import { useAppDispatch } from '../Redux/store';
+import { AddToCart } from '../Redux/features/Carte/CarteSlice';
 
 
 interface IProps {
@@ -35,6 +37,8 @@ const Prods = ({product,setProductToEdit,openEditModal
   }
   console.log(onRemove)
 
+  const dispatch = useAppDispatch()
+
   return (
 
     <div className='m-5 container'>
@@ -58,7 +62,7 @@ const Prods = ({product,setProductToEdit,openEditModal
 
       <div className='m-5 flex justify-center items-center space-x-3'>
         {/* <Btn onClick={onEdit} cla="bg-blue-900"><FilePenLine /></Btn> */}
-        <Btn cla="bg-sky-950"><ShoppingCart /> <span> Add To Cart</span></Btn>
+        <Btn onClick={()=>dispatch(AddToCart(product))} cla="bg-sky-950"><ShoppingCart /> Add To Cart</Btn>
         {/* <Btn onClick={onRemove} cla="bg-red-700"><Trash2 /></Btn> */}
       </div>
       

@@ -13,7 +13,7 @@ import { ProductNameTypes } from './types'
 
 
 function HomePage() {
-  const ObjPro:IProduct = { title: "",des: "", imageUrl: "", price: "" }
+  const ObjPro:IProduct = { title: "",des: "", imageUrl: "", price: "",quantity:0 }
   const [product,setProduct] = useState<IProduct>( ObjPro);
   const [productss,setProductss] = useState<IProduct[]>(Products);
   const [productToEditIdx, setProductToEditIdx] = useState<number>(0);
