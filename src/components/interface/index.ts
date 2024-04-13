@@ -15,3 +15,25 @@ export interface IFormInput {
   label: string;
   type: string;
 }
+
+export interface IErrors {
+  error: {
+    details?:{
+       errors:{
+          message:string
+       }[]
+    },
+    message?:string
+  }
+}
+
+export interface ILoginInput {
+  type:string
+  placeholder:string
+  name:"identifier" | "password"
+  validation:{
+      required?:boolean, 
+      minLength?:number, 
+      pattern?:RegExp
+  }
+}

@@ -19,8 +19,14 @@ const initialState: CartState = {
     
     AddToCart: (state, action: PayloadAction<IProduct>) => {
        state.carteItems = cartItemShop( state.carteItems,action.payload)
-     },
-  },
+    },
+//     RemoveFromCart:(state, action:PayloadAction<string>)=>{
+//       const index = state.carteItems.findIndex(item => item.id === action.payload);
+//       if (index !== -1) {
+//         state.carteItems.splice(index, 1);
+//   }
+//   },
+  }
 })
 
 

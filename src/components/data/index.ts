@@ -1,5 +1,5 @@
 
-import { IProduct,IFormInput } from "../interface";
+import { IProduct,IFormInput, ILoginInput } from "../interface";
 import { v4 as uuid } from "uuid";
 
 export const Products:IProduct [] = [
@@ -101,4 +101,28 @@ export const Products:IProduct [] = [
       type: "text",
     },
   ];
+
+  export const LOGIN_FORM : ILoginInput [] = [
+
+   
+    {
+        type: 'text',
+        name: 'identifier',
+        placeholder:'Email address',
+        validation:{
+            required:true,
+            pattern:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+        }
+    },
+    {
+        type: 'password',
+        name: 'password',
+        placeholder:'Password',
+        validation:{
+            required:true,
+            minLength:6
+        }
+    },
+    
+]
   

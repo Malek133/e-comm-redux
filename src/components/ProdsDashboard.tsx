@@ -3,17 +3,38 @@
 import Image from './ui/Image';
 import { IProduct } from './interface';
 import Btn from './ui/Btn';
-import { ShoppingCart } from 'lucide-react';
-import { useAppDispatch } from '../Redux/store';
-import { AddToCart } from '../Redux/features/Carte/CarteSlice';
+ import { FilePenLine } from 'lucide-react';
+ import { Trash2 } from 'lucide-react';
+
 
 interface IProps {
   product:IProduct
+   setProductToEdit:( product:IProduct) => void
+   openEditModal:() => void
+   setProductToEditIdx : (value:number) => void
+  idx:number
+   openConfirmModal: () => void
+  
 }
 
-const Prods = ({product}:IProps) => {
+const ProdsDashboard = ({product,setProductToEdit,openEditModal,idx
+   ,setProductToEditIdx,openConfirmModal
+}:IProps) => {
 
-  const dispatch = useAppDispatch()
+  const onEdit = () =>{
+    setProductToEdit(product)
+    openEditModal()
+    setProductToEditIdx(idx)
+  }
+
+  
+
+  const onRemove = () =>{
+    openConfirmModal()
+    setProductToEdit(product)
+  }
+  
+
 
   return (
 
@@ -34,9 +55,11 @@ const Prods = ({product}:IProps) => {
         <p className='my-5 m-2'>{product.des}</p>
         </div>
 
+     
+
       <div className='m-5 flex justify-center items-center space-x-3'>
-        <Btn onClick={()=>dispatch(AddToCart(product))} 
-        cla="bg-sky-950"><ShoppingCart /> Add To Cart</Btn>
+        <Btn onClick={onEdit} cla="bg-blue-900"><FilePenLine /></Btn> 
+        <Btn onClick={onRemove} cla="bg-red-700"><Trash2 /></Btn>
       </div>
       
     </div>
@@ -45,6 +68,4 @@ const Prods = ({product}:IProps) => {
   )
 }
 
-export default Prods
-
-
+export default ProdsDashboard

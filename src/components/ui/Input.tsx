@@ -1,19 +1,19 @@
-import { InputHTMLAttributes } from "react";
 
-interface IProps 
-extends InputHTMLAttributes<HTMLInputElement> {}
+import  { InputHTMLAttributes, forwardRef } from "react";
 
-const Input = ({ ...rest }: IProps) => {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
+
+const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  const { ...rest } = props; // Déstructuration après avoir extrait la référence
   return (
     <input
-      className="border-[1px] border-gray-300 
-      shadow-md focus:border-indigo-500 
-      focus:outline-none focus:ring-1
-       focus:ring-indigo-500 rounded-lg px-3 
-       py-3 text-md"
+      ref={ref}
+      className="border-[1px] border-gray-300 w-full 
+      shadow-md focus:border-indigo-500 focus:outline-none 
+      focus:ring-1 focus:ring-indigo-500 rounded-lg px-3 py-3 text-md"
       {...rest}
     />
   );
-};
+});
 
 export default Input;

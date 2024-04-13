@@ -2,19 +2,15 @@ import { Route, createBrowserRouter,
     createRoutesFromElements } from "react-router-dom";
   
   import HomePage from "../HomePage";
-  
-  
 import ErrorHandler from "../errors/ErrorHandler";
 import PageNotFound from "../errors/PageNotFound";
 import AddCart from "../AddCart";
 import ProtectedRoute from "../auth/ProtectedRoute";
 import RootLayout from "../pages/RootLayout";
 import Login from "../pages/Login";
-import Register from "../pages/Register";
+import HomeDashboard from "../Dashbord";
  
-  
-  
-  const storageKey = 'routeLoged';
+  const storageKey = 'addLoged';
   const userDataString = localStorage.getItem(storageKey);
   const userData = userDataString ? JSON.parse(userDataString) : null
   
@@ -28,24 +24,25 @@ import Register from "../pages/Register";
           <Route
             index
             element={
-              //  <ProtectedRoute isAllowed={userData?.jwt} 
-              //  redirectPath="/login" 
-              //  data={userData}>
-              // <HomePage />
-              //  </ProtectedRoute> 
-                <HomePage />
+              <HomePage />
             }
           />
          
           <Route
             path="/AddCart"
             element={
-              // <ProtectedRoute isAllowed={userData?.jwt} 
-              // redirectPath="/login" 
-              // data={userData}>
-              //    <AddCart />
-              // </ProtectedRoute>
               <AddCart />
+            }
+          />
+          <Route
+            path="/Dashboard"
+            element={
+              <ProtectedRoute isAllowed={userData?.jwt} 
+               redirectPath="/login" 
+               data={userData}>
+                 <HomeDashboard /> 
+               </ProtectedRoute>
+              
             }
           />
           <Route
@@ -57,7 +54,7 @@ import Register from "../pages/Register";
               </ProtectedRoute>
             }
           />
-          <Route
+          {/* <Route
             path="register"
             element={
               <ProtectedRoute isAllowed={!userData?.jwt} 
@@ -65,7 +62,7 @@ import Register from "../pages/Register";
                 <Register />
               </ProtectedRoute>
             }
-          />
+          /> */}
   
         </Route>
   
